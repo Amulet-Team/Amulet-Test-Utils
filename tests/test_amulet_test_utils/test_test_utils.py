@@ -68,3 +68,38 @@ class TestUtilsTestCase(TestCase):
         test_assert_raises_2()
         with self.assertRaises(RuntimeError):
             test_assert_raises_3()
+
+    def test_almost_equal(self) -> None:
+        from test_amulet_test_utils._test_test_utils import (
+            test_assert_almost_equal,
+            test_assert_almost_equal_2,
+            test_assert_not_almost_equal,
+            test_assert_not_almost_equal_2
+        )
+        test_assert_almost_equal(5.5, 5.50000001)
+        test_assert_almost_equal(5.50000001, 5.5)
+        with self.assertRaises(RuntimeError):
+            test_assert_almost_equal(5.5, 5.50001)
+        with self.assertRaises(RuntimeError):
+            test_assert_almost_equal(5.50001, 5.5)
+
+        test_assert_almost_equal_2(5.5, 5.501, 0.01)
+        test_assert_almost_equal_2(5.501, 5.5, 0.01)
+        with self.assertRaises(RuntimeError):
+            test_assert_almost_equal_2(5.5, 5.52, 0.01)
+        with self.assertRaises(RuntimeError):
+            test_assert_almost_equal_2(5.52, 5.5, 0.01)
+
+        test_assert_not_almost_equal(5.5, 5.501)
+        test_assert_not_almost_equal(5.501, 5.5)
+        with self.assertRaises(RuntimeError):
+            test_assert_not_almost_equal(5.5, 5.50000001)
+        with self.assertRaises(RuntimeError):
+            test_assert_not_almost_equal(5.50000001, 5.5)
+
+        test_assert_not_almost_equal_2(5.5, 6.6, 1)
+        test_assert_not_almost_equal_2(6.6, 5.5, 1)
+        with self.assertRaises(RuntimeError):
+            test_assert_not_almost_equal_2(5.5, 5.6, 1)
+        with self.assertRaises(RuntimeError):
+            test_assert_not_almost_equal_2(5.6, 5.5, 1)

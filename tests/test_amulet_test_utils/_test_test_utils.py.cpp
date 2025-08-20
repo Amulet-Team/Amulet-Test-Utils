@@ -73,6 +73,22 @@ static void test_assert_raises_3() {
     ASSERT_RAISES(std::runtime_error, throw std::invalid_argument(""))
 }
 
+static void test_assert_almost_equal(double a, double b){
+    ASSERT_ALMOST_EQUAL(double, a, b);
+}
+
+static void test_assert_almost_equal_2(double a, double b, double err){
+    ASSERT_ALMOST_EQUAL_2(double, a, b, err);
+}
+
+static void test_assert_not_almost_equal(double a, double b){
+    ASSERT_NOT_ALMOST_EQUAL(double, a, b);
+}
+
+static void test_assert_not_almost_equal_2(double a, double b, double err){
+    ASSERT_NOT_ALMOST_EQUAL_2(double, a, b, err);
+}
+
 PYBIND11_MODULE(_test_test_utils, m)
 {
     m.def("test_assert_equal_1", &test_assert_equal_1);
@@ -89,4 +105,8 @@ PYBIND11_MODULE(_test_test_utils, m)
     m.def("test_assert_raises_1", &test_assert_raises_1);
     m.def("test_assert_raises_2", &test_assert_raises_2);
     m.def("test_assert_raises_3", &test_assert_raises_3);
+    m.def("test_assert_almost_equal", &test_assert_almost_equal);
+    m.def("test_assert_almost_equal_2", &test_assert_almost_equal_2);
+    m.def("test_assert_not_almost_equal", &test_assert_not_almost_equal);
+    m.def("test_assert_not_almost_equal_2", &test_assert_not_almost_equal_2);
 }
