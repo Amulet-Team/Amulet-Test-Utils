@@ -51,7 +51,7 @@ std::string cast_to_string(const T& obj)
         if (!(OP_FUNC)) {                                           \
             std::string assert_comp_msg;                            \
             assert_comp_msg.reserve(200);                           \
-            assert_comp_msg += "A " #OP " B failed in file ";       \
+            assert_comp_msg += "A " OP " B failed in file ";       \
             assert_comp_msg += __FILE__;                            \
             assert_comp_msg += " at line ";                         \
             assert_comp_msg += std::to_string(__LINE__);            \
@@ -68,7 +68,7 @@ std::string cast_to_string(const T& obj)
         }                                                           \
     }
 
-#define _ASSERT_COMPARE(CLS, A, B, OP) _ASSERT_COMPARE_2(CLS, A, B, assert_comp_a OP assert_comp_b, OP)
+#define _ASSERT_COMPARE(CLS, A, B, OP) _ASSERT_COMPARE_2(CLS, A, B, assert_comp_a OP assert_comp_b, #OP)
 
 #define ASSERT_EQUAL(CLS, A, B) _ASSERT_COMPARE(CLS, A, B, ==)
 #define ASSERT_NOT_EQUAL(CLS, A, B) _ASSERT_COMPARE(CLS, A, B, !=)
@@ -106,7 +106,7 @@ std::string cast_to_string(const T& obj)
         }                                                          \
     }
 
-#define ASSERT_ALMOST_EQUAL_2(CLS, A, B, ERR) _ASSERT_COMPARE_2(CLS, A, B, std::abs(assert_comp_a - assert_comp_b) <= ERR, ≈)
+#define ASSERT_ALMOST_EQUAL_2(CLS, A, B, ERR) _ASSERT_COMPARE_2(CLS, A, B, std::abs(assert_comp_a - assert_comp_b) <= ERR, "≈")
 #define ASSERT_ALMOST_EQUAL(CLS, A, B) ASSERT_ALMOST_EQUAL_2(CLS, A, B, 0.000001)
-#define ASSERT_NOT_ALMOST_EQUAL_2(CLS, A, B, ERR) _ASSERT_COMPARE_2(CLS, A, B, std::abs(assert_comp_a - assert_comp_b) > ERR, ≉)
+#define ASSERT_NOT_ALMOST_EQUAL_2(CLS, A, B, ERR) _ASSERT_COMPARE_2(CLS, A, B, std::abs(assert_comp_a - assert_comp_b) > ERR, "≉")
 #define ASSERT_NOT_ALMOST_EQUAL(CLS, A, B) ASSERT_NOT_ALMOST_EQUAL_2(CLS, A, B, 0.000001)
