@@ -59,6 +59,14 @@ static void test_assert_greater_equal(int a, int b)
     ASSERT_GREATER_EQUAL(int, a, b);
 }
 
+static void test_assert_true(bool value){
+    ASSERT_TRUE(value);
+}
+
+static void test_assert_false(bool value){
+    ASSERT_FALSE(value);
+}
+
 static void test_assert_raises_1()
 {
     ASSERT_RAISES(std::runtime_error, throw std::runtime_error(""))
@@ -102,6 +110,8 @@ PYBIND11_MODULE(_test_test_utils, m)
     m.def("test_assert_less_equal", &test_assert_less_equal);
     m.def("test_assert_greater", &test_assert_greater);
     m.def("test_assert_greater_equal", &test_assert_greater_equal);
+    m.def("test_assert_true", &test_assert_true);
+    m.def("test_assert_false", &test_assert_false);
     m.def("test_assert_raises_1", &test_assert_raises_1);
     m.def("test_assert_raises_2", &test_assert_raises_2);
     m.def("test_assert_raises_3", &test_assert_raises_3);
