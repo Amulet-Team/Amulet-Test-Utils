@@ -57,6 +57,18 @@ class TestUtilsTestCase(TestCase):
         with self.assertRaises(RuntimeError):
             test_assert_greater_equal(5, 6)
 
+    def test_assert_true(self) -> None:
+        from test_amulet_test_utils._test_test_utils import test_assert_true
+        test_assert_true(True)
+        with self.assertRaises(RuntimeError):
+            test_assert_true(False)
+
+    def test_assert_false(self) -> None:
+        from test_amulet_test_utils._test_test_utils import test_assert_false
+        test_assert_false(False)
+        with self.assertRaises(RuntimeError):
+            test_assert_false(True)
+
     def test_assert_raises(self) -> None:
         from test_amulet_test_utils._test_test_utils import (
             test_assert_raises_1,

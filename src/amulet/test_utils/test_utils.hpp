@@ -77,6 +77,9 @@ std::string cast_to_string(const T& obj)
 #define ASSERT_GREATER(CLS, A, B) _ASSERT_COMPARE(CLS, A, B, >)
 #define ASSERT_GREATER_EQUAL(CLS, A, B) _ASSERT_COMPARE(CLS, A, B, >=)
 
+#define ASSERT_TRUE(A) ASSERT_EQUAL(bool, true, A)
+#define ASSERT_FALSE(A) ASSERT_EQUAL(bool, false, A)
+
 #define ASSERT_RAISES(EXC, A)                                      \
     {                                                              \
         bool err_raised = false;                                   \
