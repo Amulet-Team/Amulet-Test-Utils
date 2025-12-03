@@ -22,6 +22,7 @@ find_package(pybind11 CONFIG REQUIRED)
 find_package(amulet_test_utils CONFIG REQUIRED)
 
 pybind11_add_module(_test_test_utils "test_amulet_test_utils/_test_test_utils.py.cpp")
+set_target_properties(_test_test_utils PROPERTIES FOLDER "Tests")
 target_compile_definitions(_test_test_utils PRIVATE PYBIND11_DETAILED_ERROR_MESSAGES)
 target_link_libraries(_test_test_utils PRIVATE amulet_test_utils)
 
